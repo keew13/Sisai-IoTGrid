@@ -21,7 +21,8 @@ def getReducedGrid(request):
             image = cv2.resize(image, (10, 30), interpolation=cv2.INTER_AREA)
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             os.remove('images/'+img_name)
-        except:
+        except Exception as e:
+            print(e)
             return Response("Bad request", status=status.HTTP_400_BAD_REQUEST)
     return Response({'image':image}, status=status.HTTP_200_OK)
 
